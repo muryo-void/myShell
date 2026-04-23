@@ -1,0 +1,6 @@
+# Kompilierte Binärdateien
+kleineShell
+*.o
+
+# Betriebssystem-Dateien
+.DS_Store
