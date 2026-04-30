@@ -20,6 +20,6 @@ Dieses Projekt wurde im Rahmen des Fachs TP an der TFO "Max Valier" Bozen (Schul
 Zuerst das Projekt von GitHub auf den lokalen Rechner kopieren:
 
 ```bash
-git clone [https://github.com/DEIN_USERNAME/myShell.git](https://github.com/DEIN_USERNAME/myShell.git)
+git clone [https://github.com/muryo-void/myShell.git](https://github.com/muryo/myShell.git)
 cd myShell
 ```
