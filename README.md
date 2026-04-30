@@ -1,8 +1,6 @@
-# myShell
+# 🐚 myShell
 
 Dieses Projekt wurde im Rahmen des Fachs TP an der TFO "Max Valier" Bozen (Schuljahr 2025/26) entwickelt. Ziel war es, eine eigene Linux-Shell in C zu programmieren, die Befehle einliest, parst und in Kindprozessen ausführt.
-
-![myShell Startbildschirm](docs/screenshot.png)
 
 ## ✨ Funktionen
 
@@ -15,11 +13,53 @@ Dieses Projekt wurde im Rahmen des Fachs TP an der TFO "Max Valier" Bozen (Schul
 
 ## 🛠️ Installation & Vorbereitung
 
+Damit die Shell korrekt funktioniert (insbesondere das Design und das ASCII-Logo), muss sie systemweit installiert werden. Dadurch werden die Konfigurationsdateien an den erwarteten Pfad `/etc/myShell/config/` kopiert.
+
 ### 1. Repository klonen
 
 Zuerst das Projekt von GitHub auf den lokalen Rechner kopieren:
 
 ```bash
-git clone [https://github.com/muryo-void/myShell.git](https://github.com/muryo/myShell.git)
+git clone https://github.com/muryo-void/myShell.git`
 cd myShell
 ```
+
+### 2. Abhängigkeiten installieren
+
+Stellen Sie sicher, dass `libreadline` und `fastfetch` installiert sind:
+
+```bash
+make install-deps
+```
+
+### 3. Kompilieren und systemweite Installation
+
+Dies ist der wichtigste Schritt. Das Programm wird kompiliert und die Assets (Logo & Design) werden in das Systemverzeichnis kopiert:
+
+```bash
+make
+sudo make install
+```
+
+## 🚀 Benutzung
+
+Nach der erfolgreichen Installation kann die Shell von jedem beliebigen Verzeichnis aus gestartet werden:
+
+```bash
+myShell
+```
+
+## 🗑️ Deinstallation
+
+Um das Programm und alle erstellten Konfigurationsordner (`/etc/myShell`) restlos zu entfernen:
+
+```bash
+sudo make uninstall
+```
+
+## 👨‍💻 Autor
+
+Adrian Pinggera  
+Klasse: 3_Klasse_2025_26
+
+Technologische Fachoberschule "Max Valier" Bozen
