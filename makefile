@@ -14,13 +14,18 @@ install-deps:
 
 # Installiert das Programm 
 install: $(TARGET)
-	@echo "Installiere $(TARGET) nach /usr/local/bin..."
+	@echo "Installiere Programm..."
 	sudo cp $(TARGET) /usr/local/bin/$(TARGET)
 	sudo chmod +x /usr/local/bin/$(TARGET)
-	@echo "Kopiere Konfiguration nach /etc/myShell..."
-	sudo mkdir -p /etc/myShell
-	sudo cp -r config/* /etc/myShell/
-	@echo "Installation abgeschlossen!"
+	
+	@echo "Erstelle Konfigurations-Struktur..."
+	# Erstellt den Ordner UND den Unterordner config
+	sudo mkdir -p /etc/myShell/config
+	
+	@echo "Kopiere Dateien..."
+	sudo cp config/design.jsonc /etc/myShell/config/
+	sudo cp config/ascii.txt /etc/myShell/config/
+	@echo "Installation fertig!"
 
 # Entfernt das Programm 
 uninstall:
