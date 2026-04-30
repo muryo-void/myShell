@@ -2,7 +2,7 @@
  * @author Adrian Pinggera
  * @date 30.04.2026
  *
- * Update: Implementierung des Built-in Befehls 'cd' mittels chdir().
+ * Prompt Design & aktuelles Arbeitsverzeichnis
  */
 
 #include <stdio.h>
@@ -11,60 +11,73 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+// Farbcodes
+#define GRN "\033[1;32m"
+#define BLU "\033[1;34m"
+#define RST "\033[0m"
+
 int main() {
     char input[1024];
     char *args[64];
     char *token;
+    char cwd[1024];
+
+    // Username
+    char *user = getenv("USER");
+    if (user == NULL) {
+        user = "user"; 
+    }
 
     while (1) {
-        printf("myShell> ");
+        // Aktuelles Arbeitsverzeichnis
+        if (getcwd(cwd, sizeof(cwd)) == NULL) {
+            strcpy(cwd, "?");
+        }
+
+        // nutzer@shell: /ordner/ $
+        printf("%s%s@shell%s:%s%s%s$ ", GRN, user, RST, BLU, cwd, RST);
         fflush(stdout);
 
-        // Befehl einlesen
+        // Zeile einlesen
         if (fgets(input, sizeof(input), stdin) == NULL) {
+            printf("\n");
             break;
         }
 
-        // Zeilenumbruch entfernen
+        // Enter-Taste (\n) am Ende entfernen
         input[strcspn(input, "\n")] = '\0';
 
-        // Befehl in *args[] speichern
-        int j = 0;
+        // Befehl zerlegen
+        int i = 0;
         token = strtok(input, " ");
-        while (token != NULL && j < 63) {
-            args[j] = token;
-            j++;
+        while (token != NULL && i < 63) {
+            args[i] = token;
+            i++;
             token = strtok(NULL, " ");
         }
-        args[j] = NULL;
+        args[i] = NULL;
 
-        // Leere Eingabe prüfen
-        if (args[0] == NULL) {
-            continue;
-        }
+        // Falls nichts eingegeben wurde
+        if (args[0] == NULL) continue;
 
-        // --- Spezialfälle  ---
-
-        // exit
+        // Beenden
         if (strcmp(args[0], "exit") == 0) {
+            printf("Logout...\n");
             break;
         }
 
-        // cd 
+        // Verzeichnis wechseln
         if (strcmp(args[0], "cd") == 0) {
-            if (args[1] == NULL) {
-                fprintf(stderr, "myShell: Pfad für 'cd' fehlt\n");
-            } else {
+            if (args[1] != NULL) {
                 if (chdir(args[1]) != 0) {
-                    perror("myShell");
+                    perror("cd Fehler");
                 }
             }
             continue;
         }
 
-        // --- Befehl ausführen ---
+        // Programm ausführen
         pid_t pid = fork();
-
         if (pid == 0) {
             // Kindprozess
             if (execvp(args[0], args) == -1) {
@@ -72,14 +85,11 @@ int main() {
             }
             exit(EXIT_FAILURE);
         } else if (pid < 0) {
-            // Fehler bei fork
             perror("Fork fehlgeschlagen");
         } else {
-            // Elternprozess
             wait(NULL);
         }
     }
 
-    printf("Shell beendet.\n");
     return 0;
 }
