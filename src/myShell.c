@@ -10,7 +10,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
-
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -19,6 +18,9 @@
 #define RST "\033[0m"
 
 int main() {
+    // fastfetch aufrufen
+    system("fastfetch --config config/design.jsonc");
+
     char *input;
     char *args[64];
     char *token;
@@ -30,11 +32,16 @@ int main() {
 
     while (1) {
         if (getcwd(cwd, sizeof(cwd)) == NULL) strcpy(cwd, "?");
+
         snprintf(prompt, sizeof(prompt), "%s%s@shell%s:%s%s%s$ ", GRN, user, RST, BLU, cwd, RST);
 
         input = readline(prompt);
 
-        // History
+        if (input == NULL) {
+            printf("\nLogout...\n");
+            break;
+        }
+
         if (*input != '\0') {
             add_history(input);
         }
@@ -64,25 +71,22 @@ int main() {
         // cd
         if (strcmp(args[0], "cd") == 0) {
             if (args[1] != NULL) {
-                if (chdir(args[1]) != 0) {
-                    perror("cd Fehler");
-                }
+                chdir(args[1]);
             }
             free(input);
             continue;
         }
 
-        // Programm ausführen
-        pid_t pid = fork();
-        if (pid == 0) {
+        // Ausführen
+        if (fork() == 0) {
             if (execvp(args[0], args) == -1) {
-                perror("Fehler beim Ausführen");
+                perror("Fehler");
             }
             exit(EXIT_FAILURE);
         } else {
             wait(NULL);
         }
-        
+
         free(input);
     }
 
