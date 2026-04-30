@@ -19,7 +19,7 @@
 
 int main() {
     // fastfetch aufrufen
-    system("fastfetch --config config/design.jsonc");
+    system("fastfetch --config /etc/myShell/config/design.jsonc");
 
     char *input;
     char *args[64];
