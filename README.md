@@ -1,6 +1,8 @@
-# 🐚 myShell
+# </> myShell
 
 Dieses Projekt wurde im Rahmen des Fachs TP an der TFO "Max Valier" Bozen (Schuljahr 2025/26) entwickelt. Ziel war es, eine eigene Linux-Shell in C zu programmieren, die Befehle einliest, parst und in Kindprozessen ausführt.
+
+![myShell Startbildschirm](docs/screenshot.png)
 
 ## ✨ Funktionen
 
@@ -60,6 +62,6 @@ sudo make uninstall
 ## 👨‍💻 Autor
 
 Adrian Pinggera  
-Klasse: 3_Klasse_2025_26
+Klasse: 3ib - 2025_26
 
 Technologische Fachoberschule "Max Valier" Bozen
