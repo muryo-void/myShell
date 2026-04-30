@@ -1,5 +1,5 @@
 # Ausführbare Datei
-kleineShell
+myShell
 
 # Alle Objektdateien
 *.o
