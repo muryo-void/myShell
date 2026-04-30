@@ -1,6 +1,9 @@
-# Kompilierte Binärdateien
+# Ausführbare Datei
 kleineShell
+
+# Alle Objektdateien
 *.o
 
-# Betriebssystem-Dateien
+# Betriebssystem
 .DS_Store
+Thumbs.db
