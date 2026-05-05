@@ -9,8 +9,10 @@ $(TARGET): src/myShell.c
 	$(CC) $(CFLAGS) -o $(TARGET) src/myShell.c $(LIBS)
 
 install-deps:
+	echo "Installiere Abhängigkeiten..."
 	sudo apt update
-	sudo apt install -y libreadline-dev fastfetch
+	sudo apt install -y libreadline-dev fastfetch fonts-noto-color-emoji
+	@echo "Abhängigkeiten installiert. Eventuell Terminal neu starten!"
 
 # Installiert das Programm 
 install: $(TARGET)

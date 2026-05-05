@@ -1,7 +1,8 @@
 /*
  * @author Adrian Pinggera
  * @date 30.04.2026
- * * UI-Update: Startbild, PWD & Commandline, Exit
+ *
+ * UI-Update: Startbild, PWD & Commandline, Exit
  */
 
 #include <stdio.h>
