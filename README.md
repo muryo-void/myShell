@@ -2,7 +2,7 @@
 
 Dieses Projekt wurde im Rahmen des Fachs TP an der TFO "Max Valier" Bozen (Schuljahr 2025/26) entwickelt. Ziel war es, eine eigene Linux-Shell in C zu programmieren, die Befehle einliest, parst und in Kindprozessen ausführt.
 
-![myShell Startbildschirm](docs/screenshot.png)
+![myShell Startbildschirm](docs/screenshot1.png)
 
 ## ✨ Funktionen
 
@@ -12,6 +12,8 @@ Dieses Projekt wurde im Rahmen des Fachs TP an der TFO "Max Valier" Bozen (Schul
 - **Startbildschirm:** Automatischer Aufruf von `fastfetch` mit einem eigenen ASCII-Logo und Systeminfos beim Start.
 - **Built-in Befehle:** Native Unterstützung für `cd` (Verzeichniswechsel) und `exit`.
 - **Globales Setup:** Vollständige Installation und Deinstallation über das Makefile.
+
+![myShell Startbildschirm](docs/screenshot2.png)
 
 ## 🛠️ Installation & Vorbereitung
 
