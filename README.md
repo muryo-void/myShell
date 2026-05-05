@@ -22,7 +22,7 @@ Damit die Shell korrekt funktioniert (insbesondere das Design und das ASCII-Logo
 Zuerst das Projekt von GitHub auf den lokalen Rechner kopieren:
 
 ```bash
-git clone https://github.com/muryo-void/myShell.git`
+git clone https://github.com/muryo-void/myShell.git
 cd myShell
 ```
 
